@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
-import './style.css';
+
+import './styles.css';
+import { GraphModes } from 'types';
 
 const initState = ({ height, width }) => {
   const matrix = new Array(height);
@@ -15,23 +17,23 @@ const initState = ({ height, width }) => {
   return {
     dimentions: { height, width },
     matrix,
-  }
-}
+  };
+};
 
 const reducer = (state, action) => {
   const { matrix } = state.matrix;
   switch (action.type) {
-    case "START":
+    case GraphModes.START:
       break;
-    case "END":
+    case GraphModes.END:
       break;
-    case "WALL":
+    case GraphModes.WALL:
       break;
     default:
       throw new Error("Unexpected action");
   }
-  return {...state, matrix}
-}
+  return {...state, matrix};
+};
 
 const Graph = (props) => {
   const height = 10;  // use window size
@@ -40,7 +42,7 @@ const Graph = (props) => {
 
   const handleClick = (key) => {
     dispatch({type: props.selectMode, payload: key});
-  }
+  };
 
   return (
     <table className="Graph" border="1">
@@ -60,6 +62,6 @@ const Graph = (props) => {
       })}
     </table>
   );
-}
+};
 
 export default Graph;

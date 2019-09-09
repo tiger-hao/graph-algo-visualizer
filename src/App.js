@@ -1,8 +1,10 @@
 import React from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-
+import ModeSwitcher from 'components/ModeSwitcher';
 import Graph from 'components/Graph';
+import { GraphModes } from 'types';
 
 const App = () => {
   return (
@@ -21,9 +23,10 @@ const App = () => {
           Learn React
         </a>
       </header> */}
-      <Graph selectMode="WALL" />
+      <ModeSwitcher />
+      <Graph selectMode={GraphModes.WALL} />
     </div>
   );
-}
+};
 
 export default App;
