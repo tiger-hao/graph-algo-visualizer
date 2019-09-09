@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Graph from './components/Graph';
+import Graph from 'components/Graph';
 
 const App = () => {
   return (
