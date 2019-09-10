@@ -16,7 +16,10 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "semi": [1, "always"]
+      "semi": [
+        1,
+        "always"
+      ]
     }
   },
   "browserslist": {

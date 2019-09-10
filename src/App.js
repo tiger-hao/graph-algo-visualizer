@@ -5,8 +5,10 @@ import './App.css';
 import ModeSwitcher from 'components/ModeSwitcher';
 import Graph from 'components/Graph';
 import { GraphModes } from 'types';
+import Node from 'components/Node'
 
 const App = () => {
+  var  array = Array(946).fill(null);
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -23,8 +25,9 @@ const App = () => {
           Learn React
         </a>
       </header> */}
-      <ModeSwitcher />
-      <Graph selectMode={GraphModes.WALL} />
+      {/* <ModeSwitcher />
+      <Graph selectMode={GraphModes.WALL} /> */}
+      <div>{array.map((index) => <Node/>)}</div>
     </div>
   );
 };
