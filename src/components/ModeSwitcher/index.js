@@ -3,10 +3,10 @@ import React from 'react';
 import './styles.css';
 import { GraphModes } from 'types';
 
-const ModeSwitcher = (props) =>  {
+const ModeSwitcher = ({ mode, setMode }) =>  {
   return (
     <div className="ModeSwitcher">
-      ModeSwitcher
+      <t>ModeSwitcher Mode: {mode}</t>
     </div>
   );
 };
