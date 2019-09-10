@@ -37,8 +37,8 @@ const reducer = (state, action) => {
 };
 
 const Graph = ({ graphMode }) => {
-  const height = 10;  // use window size
-  const width = 10;
+  const height = Math.floor(window.innerHeight / 35);
+  const width = Math.floor(window.innerWidth / 35);
   const [state, dispatch] = useReducer(reducer, { height, width }, initState);
 
   const handleClick = (key) => {
@@ -46,22 +46,20 @@ const Graph = ({ graphMode }) => {
   };
 
   return (
-    <table className="graph" border="1">
+    <div className="graph">
       {state.matrix && state.matrix.length > 0 && state.matrix.map((rowArr, rowNum) => {
         return (
           <div key={rowNum} className="row">
             {rowArr && rowArr.length > 0 && rowArr.map((node, colNum) => {
               const key = `${rowNum} ${colNum}`;
               return (
-                <Node key={key} onClick={handleClick}>
-                  {node}
-                </Node>
+                <Node key={key} onClick={handleClick} />
               );
             })}
           </div>
         );
       })}
-    </table>
+    </div>
   );
 };
 

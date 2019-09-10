@@ -1,10 +1,4 @@
 .graph {
-  background-color: #282c34;
-  color: white;
   height: 95vh;
   width: 100vw;
-}
-
-.row {
-  float: left;
 }

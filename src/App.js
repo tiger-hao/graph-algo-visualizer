@@ -10,7 +10,6 @@ import Node from 'components/Node';
 const App = () => {
   const [graphMode, setGraphMode] = useState(GraphModes.WALL);
 
-  var  array = Array(946).fill(null);
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -29,7 +28,6 @@ const App = () => {
       </header> */}
       <ModeSwitcher mode={graphMode} setMode={setGraphMode}/>
       <Graph graphMode={graphMode} />
-      <div>{array.map((index) => <Node/>)}</div>
     </div>
   );
 };

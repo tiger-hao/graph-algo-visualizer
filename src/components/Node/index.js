@@ -4,7 +4,7 @@ import './styles.css';
 
 const Node = ({ key, onClick }) => {
   return (
-    <button className="node" onClick={() => onClick(key)}>
+    <button className="node" /*onClick={() => onClick(key)}*/>
     </button>
   );
 };
