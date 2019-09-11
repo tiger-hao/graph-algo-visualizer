@@ -11,7 +11,7 @@ const initState = ({ height, width }) => {
     matrix[i] = new Array(width);
 
     for (let j = 0; j < width; j++) {
-      matrix[i][j] = "node";
+      matrix[i][j] = GraphModes.DEFAULT;
     }
   }
 
@@ -23,27 +23,19 @@ const initState = ({ height, width }) => {
 
 const reducer = (state, action) => {
   const matrix = state.matrix;
-  switch (action.type) {
-    case GraphModes.START:
-      break;
-    case GraphModes.END:
-      break;
-    case GraphModes.WALL:
-      break;
-    default:
-      throw new Error("Unexpected action");
-  }
-  matrix[1][1] = "wall";
+  const { row, col } = action.payload;
+
+  matrix[row][col] = action.type;
   return {...state, matrix};
 };
 
 const Graph = ({ graphMode }) => {
-  const height = Math.floor(window.innerHeight / 35);
+  const height = Math.floor(window.innerHeight / 45);
   const width = Math.floor(window.innerWidth / 35);
   const [state, dispatch] = useReducer(reducer, { height, width }, initState);
 
-  const handleClick = (key) => {
-    dispatch({type: graphMode, payload: key});
+  const handleClick = ({ row, col }) => {
+    dispatch({type: graphMode, payload: { row, col }});
   };
 
   return (
@@ -51,11 +43,10 @@ const Graph = ({ graphMode }) => {
       {state.matrix && state.matrix.length > 0 && state.matrix.map((rowArr, rowNum) => {
         return (
           <div>
-            <div key={rowNum} className="row">
+            <div key={rowNum}>
               {rowArr && rowArr.length > 0 && rowArr.map((value, colNum) => {
-                const key = `${rowNum}-${colNum}`;
                 return (
-                  <Node key={key} className = {value}  onClick={handleClick} />
+                  <Node row={rowNum} col={colNum} className={value}  onClick={handleClick} />
                 );
               })}
             </div>
