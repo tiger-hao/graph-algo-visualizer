@@ -2,10 +2,9 @@ import React from 'react';
 
 import './styles.css';
 
-const Node = ({ key, onClick }) => {
+const Node = ({ key, className, onClick }) => {
   return (
-    <button className="node" /*onClick={() => onClick(key)}*/>
-    </button>
+    <button className={className} onClick={() => onClick(key)} />
   );
 };
 

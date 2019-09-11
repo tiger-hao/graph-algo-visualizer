@@ -11,7 +11,7 @@ const initState = ({ height, width }) => {
     matrix[i] = new Array(width);
 
     for (let j = 0; j < width; j++) {
-      matrix[i][j] = 0;
+      matrix[i][j] = "node";
     }
   }
 
@@ -22,7 +22,7 @@ const initState = ({ height, width }) => {
 };
 
 const reducer = (state, action) => {
-  const { matrix } = state.matrix;
+  const matrix = state.matrix;
   switch (action.type) {
     case GraphModes.START:
       break;
@@ -33,6 +33,7 @@ const reducer = (state, action) => {
     default:
       throw new Error("Unexpected action");
   }
+  matrix[1][1] = "wall";
   return {...state, matrix};
 };
 
@@ -49,13 +50,17 @@ const Graph = ({ graphMode }) => {
     <div className="graph">
       {state.matrix && state.matrix.length > 0 && state.matrix.map((rowArr, rowNum) => {
         return (
-          <div key={rowNum} className="row">
-            {rowArr && rowArr.length > 0 && rowArr.map((node, colNum) => {
-              const key = `${rowNum} ${colNum}`;
-              return (
-                <Node key={key} onClick={handleClick} />
-              );
-            })}
+          <div>
+            <div key={rowNum} className="row">
+              {rowArr && rowArr.length > 0 && rowArr.map((value, colNum) => {
+                const key = `${rowNum}-${colNum}`;
+                return (
+                  <Node key={key} className = {value}  onClick={handleClick} />
+                );
+              })}
+            </div>
+            <br />
+            <br />
           </div>
         );
       })}
