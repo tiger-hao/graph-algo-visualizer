@@ -5,11 +5,11 @@ import { GraphModes } from 'types';
 
 const ModeSwitcher = ({ mode, setMode }) =>  {
   return (
-    <div className="ModeSwitcher">
+    <div className="mode-switcher">
       <t>ModeSwitcher Mode: {mode} </t>
-      <button onClick={() => setMode(GraphModes.START)}>START</button>
-      <button onClick={() => setMode(GraphModes.END)}>END</button>
-      <button onClick={() => setMode(GraphModes.WALL)}>WALL</button>
+      <button className="mode-button" onClick={() => setMode(GraphModes.START)}>START</button>
+      <button className="mode-button" onClick={() => setMode(GraphModes.END)}>END</button>
+      <button className="mode-button" onClick={() => setMode(GraphModes.WALL)}>WALL</button>
     </div>
   );
 };

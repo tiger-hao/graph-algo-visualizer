@@ -1,5 +1,9 @@
-.ModeSwitcher {
+.mode-switcher {
   height: 5vh;
   width: 100vw;
   line-height: 5vh;
+}
+
+.mode-button {
+  margin: 0 5px;
 }
