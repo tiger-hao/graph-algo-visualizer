@@ -5,7 +5,7 @@ import './styles.css';
 const Node = ({ row, col, className, onClick }) => {
   console.log(row, col, className);
   return (
-    <button className={className} onClick={() => onClick({ row, col })} />
+    <button className={`${className} node`} onClick={() => onClick({ row, col })} />
   );
 };
 

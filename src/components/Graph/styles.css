@@ -2,3 +2,7 @@
   height: 95vh;
   width: 100vw;
 }
+
+.row {
+  width: 100%;
+}

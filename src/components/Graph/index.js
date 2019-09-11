@@ -42,16 +42,14 @@ const Graph = ({ graphMode }) => {
     <div className="graph">
       {state.matrix && state.matrix.length > 0 && state.matrix.map((rowArr, rowNum) => {
         return (
-          <div>
-            <div key={rowNum}>
+          <div className="row">
+            <div>
               {rowArr && rowArr.length > 0 && rowArr.map((value, colNum) => {
                 return (
                   <Node row={rowNum} col={colNum} className={value}  onClick={handleClick} />
                 );
               })}
             </div>
-            <br />
-            <br />
           </div>
         );
       })}
