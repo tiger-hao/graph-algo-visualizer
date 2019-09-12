@@ -6,6 +6,8 @@ import Node from 'components/Node';
 
 const initState = ({ height, width }) => {
   const matrix = new Array(height);
+  const currStart = undefined;
+  const currEnd = undefined;
 
   for(let i = 0; i < height; i++) {
     matrix[i] = new Array(width);
@@ -16,17 +18,34 @@ const initState = ({ height, width }) => {
   }
 
   return {
-    dimentions: { height, width },
     matrix,
+    currStart,
+    currEnd,
   };
 };
 
 const reducer = (state, action) => {
-  const matrix = state.matrix;
+  let { matrix, currStart, currEnd } = state;
   const { row, col } = action.payload;
-
   matrix[row][col] = action.type;
-  return {...state, matrix};
+
+  if (action.type === GraphModes.START) {
+    if (currStart) {
+      matrix[currStart.row][currStart.col] = GraphModes.DEFAULT;
+    }
+    currStart = { row, col };
+  } else if (action.type === GraphModes.END) {
+    if (currEnd) {
+      matrix[currEnd.row][currEnd.col] = GraphModes.DEFAULT;
+    }
+    currEnd = { row, col };
+  }
+
+  return {
+    matrix,
+    currStart,
+    currEnd,
+  };
 };
 
 const Graph = ({ graphMode }) => {
