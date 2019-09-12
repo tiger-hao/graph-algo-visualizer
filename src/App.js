@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import ModeSwitcher from 'components/ModeSwitcher';
 import Graph from 'components/Graph';
@@ -11,20 +11,10 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <header className="App-header">
+      <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+        <b>Graph Algorithms Visualizer</b>
+      </header>
       <ModeSwitcher mode={graphMode} setMode={setGraphMode}/>
       <Graph graphMode={graphMode} />
     </div>

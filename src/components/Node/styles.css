@@ -1,14 +1,15 @@
 .node {
   border: 1px solid #999;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
+
   height: 34px;
+  width: 34px;
+
   margin-right: -1px;
   margin-top: -4px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
+}
+
+.node:focus {
+  outline: none;
 }
 
 .default {
@@ -25,8 +26,4 @@
 
 .wall {
   background: black;
-}
-
-button:focus {
-  outline: false;
 }

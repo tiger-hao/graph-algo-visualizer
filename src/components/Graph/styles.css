@@ -1,8 +1,8 @@
 .graph {
-  height: 95vh;
+  height: calc(100vh - 125px);
   width: 100vw;
-}
-
-.row {
-  width: 100%;
+  padding-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: auto;
 }
