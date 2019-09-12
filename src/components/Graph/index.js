@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 
 import './styles.css';
-import { GraphModes } from 'types';
+import { GraphModes, NodeTypes } from 'types';
 import Node from 'components/Node';
 
 const initState = ({ height, width }) => {
@@ -20,11 +20,11 @@ const initState = ({ height, width }) => {
 
     for (let j = 0; j < width; j++) {
       if (i === currStart.row && j === currStart.col) {
-        matrix[i][j] = GraphModes.START;
+        matrix[i][j] = NodeTypes.START;
       } else if (i === currEnd.row && j === currEnd.col) {
-        matrix[i][j] = GraphModes.END;
+        matrix[i][j] = NodeTypes.END;
       } else {
-        matrix[i][j] = GraphModes.DEFAULT;
+        matrix[i][j] = NodeTypes.DEFAULT;
       }
     }
   }
@@ -40,21 +40,21 @@ const reducer = (state, action) => {
   let { matrix, currStart, currEnd } = state;
   const { row, col } = action.payload;
 
-  if (matrix[row][col] !== GraphModes.START && matrix[row][col] !== GraphModes.END) {
+  if (matrix[row][col] !== NodeTypes.START && matrix[row][col] !== NodeTypes.END) {
     if (action.type === GraphModes.START) {
       if (currStart) {
-        matrix[currStart.row][currStart.col] = GraphModes.DEFAULT;
+        matrix[currStart.row][currStart.col] = NodeTypes.DEFAULT;
       }
       currStart = { row, col };
     } else if (action.type === GraphModes.END) {
       if (currEnd) {
-        matrix[currEnd.row][currEnd.col] = GraphModes.DEFAULT;
+        matrix[currEnd.row][currEnd.col] = NodeTypes.DEFAULT;
       }
       currEnd = { row, col };
     }
 
     if (action.type === GraphModes.WALL) {
-      matrix[row][col] = matrix[row][col] === GraphModes.WALL ? GraphModes.DEFAULT : GraphModes.WALL;
+      matrix[row][col] = matrix[row][col] === NodeTypes.WALL ? NodeTypes.DEFAULT : NodeTypes.WALL;
     } else {
       matrix[row][col] = action.type;
     }
