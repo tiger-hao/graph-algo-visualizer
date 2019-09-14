@@ -12,7 +12,7 @@ const initState = ({ height, width }) => {
   };
   const currEnd = {
     row: Math.floor(height / 2) - 1,
-    col: Math.floor(width * 3 / 4) - 1,
+    col: Math.floor(width * 3 / 4),
   };
 
   for(let i = 0; i < height; i++) {
