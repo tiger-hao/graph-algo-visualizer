@@ -12,4 +12,5 @@ export const NodeTypes = Object.freeze({
   END: "end",
   WALL: "wall",
   TRAVERSED: "traversed",
+  PATH: "path",
 });

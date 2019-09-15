@@ -31,3 +31,7 @@
 .traversed {
   background: blue;
 }
+
+.path {
+  background: yellowgreen;
+}
