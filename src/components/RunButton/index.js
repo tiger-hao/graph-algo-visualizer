@@ -5,7 +5,7 @@ import './styles.css';
 
 import { changeNodeType } from 'actions';
 import { NodeTypes } from 'constants/index';
-import { adjacent, minDistance } from 'components/Algorithms/dijkstra';
+import { adjacent, minDistance } from 'algorithms/dijkstra';
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
