@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import './styles.css';
 import { GraphModes } from 'constants/index';
-import RunButton from 'components/RunButton';
+import dijkstra from 'algorithms/dijkstra';
 
 const ModeSwitcher = ({ mode, setMode }) =>  {
   const { graph, start, end } = useSelector(state => ({
@@ -13,17 +13,15 @@ const ModeSwitcher = ({ mode, setMode }) =>  {
   }));
 
   return (
-    <div className="mode-switcher">
-      <p>Insert: {mode} </p>
-      <button className="mode-button" onClick={() => setMode(GraphModes.START)}>START</button>
-      <button className="mode-button" onClick={() => setMode(GraphModes.END)}>END</button>
-      <button className="mode-button" onClick={() => setMode(GraphModes.WALL)}>WALL</button>
+    <div className="actions-bar">
+      <div className="mode-switcher">
+        <p>Insert: {mode} </p>
+        <button className="mode-button" onClick={() => setMode(GraphModes.START)}>START</button>
+        <button className="mode-button" onClick={() => setMode(GraphModes.END)}>END</button>
+        <button className="mode-button" onClick={() => setMode(GraphModes.WALL)}>WALL</button>
+      </div>
 
-      <RunButton
-        graph={graph}
-        start={start}
-        end={end}
-      />
+      <button className="run-button" onClick={() => dijkstra(graph, start, end)}>RUN DIJKSTRA'S</button>
     </div>
   );
 };
