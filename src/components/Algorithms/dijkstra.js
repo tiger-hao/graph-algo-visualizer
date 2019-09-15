@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { NodeTypes } from 'constants/index';
 
 export function adjacent(node, graph) {
@@ -38,7 +39,12 @@ export function minDistance(distance, Q) {
   return minNode;
 }
 
-// function dijkstra(graph, start, end) {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// async function dijkstra(graph, start, end) {
+//   const dispatch = useDispatch();
 //   const Q = new Set();
 //   const rows = graph.length;
 //   const columns = graph[0].length;
@@ -66,10 +72,7 @@ export function minDistance(distance, Q) {
 
 //   distance[start.row][start.col] = 0;
 
-
-//   let i = 0;
-
-//   while (Q.size > 0 && i++ < 1050) {
+//   while (Q.size > 0) {
 //     const u = minDistance(distance, Q);
 
 //     Q.forEach(element => {
@@ -83,13 +86,7 @@ export function minDistance(distance, Q) {
 //     }
 
 //     for (const v of adjacent(u, graph)) {
-//       onClick({
-//         type: "run",
-//         payload: {
-//           node: v,
-//           nodeType: NodeTypes.TRAVERSED,
-//         },
-//       });
+//       dispatch(changeNodeType(v, NodeTypes.TRAVERSED));
 
 //       const altDist = distance[u.row][u.col] + 1;
 //       if (altDist < distance[v.row][v.col]) {
@@ -97,17 +94,13 @@ export function minDistance(distance, Q) {
 //         previous[v.row][v.col] = u;
 //       }
 //     }
+
+//     await sleep(0);
 //   }
 
 //   let u = previous[end.row][end.col];
 //   while (u.row !== start.row || u.col !== start.col) {
-//     onClick({
-//       type: "run",
-//       payload: {
-//         node: u,
-//         nodeType: NodeTypes.PATH,
-//       },
-//     });
+//     dispatch(changeNodeType(u, NodeTypes.PATH));
 //     u = previous[u.row][u.col];
 //   }
 // }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import logo from './logo.svg';
 import './App.css';
-import ModeSwitcher from 'components/ModeSwitcher';
+import ActionsBar from 'components/ActionsBar';
 import Graph from 'components/Graph';
 import { GraphModes } from 'constants/index';
 
@@ -15,7 +15,7 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <b>Graph Algorithms Visualizer</b>
       </header>
-      <ModeSwitcher mode={graphMode} setMode={setGraphMode}/>
+      <ActionsBar mode={graphMode} setMode={setGraphMode}/>
       <Graph graphMode={graphMode} />
     </div>
   );
