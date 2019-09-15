@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
+
 import logo from './logo.svg';
 import './App.css';
 import ModeSwitcher from 'components/ModeSwitcher';
 import Graph from 'components/Graph';
-import { GraphModes } from 'types';
+import { GraphModes } from 'constants';
 
 const App = () => {
   const [graphMode, setGraphMode] = useState(GraphModes.WALL);

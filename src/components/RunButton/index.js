@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css';
 
-import { NodeTypes } from 'types';
+import { NodeTypes } from 'constants';
 import { adjacent, minDistance } from 'components/Algorithms/dijkstra';
 
 function sleep(ms) {

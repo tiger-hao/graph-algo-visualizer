@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './styles.css';
-import { GraphModes } from 'types';
+import { GraphModes } from 'constants';
 
 const ModeSwitcher = ({ mode, setMode }) =>  {
   return (

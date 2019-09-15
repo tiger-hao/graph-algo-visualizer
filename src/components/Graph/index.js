@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 
 import './styles.css';
-import { GraphModes, NodeTypes } from 'types';
+import { GraphModes, NodeTypes } from 'constants';
 import Node from 'components/Node';
 import RunButton from 'components/RunButton';
 
