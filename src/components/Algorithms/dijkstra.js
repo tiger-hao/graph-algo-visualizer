@@ -1,4 +1,4 @@
-import { NodeTypes } from 'constants';
+import { NodeTypes } from 'constants/index';
 
 export function adjacent(node, graph) {
   const { row, col } = node;
