@@ -78,6 +78,11 @@ async function dijkstra(graph, start, end) {
   while (Q.size > 0) {
     const u = minDistance(distance, Q);
 
+    // path does not exist
+    if (!u) {
+      break;
+    }
+
     Q.forEach(element => {
       if(element.row === u.row && element.col === u.col) {
         Q.delete(element);
@@ -102,9 +107,11 @@ async function dijkstra(graph, start, end) {
   }
 
   let u = previous[end.row][end.col];
-  while (u.row !== start.row || u.col !== start.col) {
-    dispatch(changeNodeType(u, NodeTypes.PATH));
-    u = previous[u.row][u.col];
+  if (u) {
+    while (u.row !== start.row || u.col !== start.col) {
+      dispatch(changeNodeType(u, NodeTypes.PATH));
+      u = previous[u.row][u.col];
+    }
   }
 }
 
