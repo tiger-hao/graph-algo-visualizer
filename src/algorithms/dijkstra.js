@@ -2,7 +2,7 @@ import store from 'store';
 import { changeNodeType } from 'actions';
 import { NodeTypes } from 'constants/index';
 
-export function adjacent(node, graph) {
+function adjacent(node, graph) {
   const { row, col } = node;
   const adjacentNodes = new Set();
 
@@ -25,7 +25,7 @@ export function adjacent(node, graph) {
   return adjacentNodes;
 }
 
-export function minDistance(distance, Q) {
+function minDistance(distance, Q) {
   let minDist = Infinity;
   let minNode;
 

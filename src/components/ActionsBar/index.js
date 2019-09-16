@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
-import { clearGraph } from 'actions';
+import { clearGraph, resetGraph } from 'actions';
 import { GraphModes } from 'constants/index';
 import dijkstra from 'algorithms/dijkstra';
 
@@ -34,9 +34,10 @@ const ActionsBar = ({ mode, setMode }) =>  {
         </div>
       </div>
 
-      <div>
+      <div className="action-container">
         <button className="action-button" onClick={() => dijkstra(graph, start, end)}>Run Dijkstra's</button>
         <button className="action-button" onClick={() => dispatch(clearGraph())}>Clear Graph</button>
+        <button className="action-button" onClick={() => dispatch(resetGraph())}>Reset Graph</button>
       </div>
     </div>
   );

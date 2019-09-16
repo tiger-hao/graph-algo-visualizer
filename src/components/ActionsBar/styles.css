@@ -56,11 +56,16 @@
   background: #ccc;
 }
 
+.action-container {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
 .action-button {
   background: lightgrey;
   height: 30px;
   width: 100px;
-  margin: 10px 15px;
+  margin: 10px 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
   border-style: outset;

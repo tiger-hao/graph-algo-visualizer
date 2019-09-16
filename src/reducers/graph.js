@@ -1,5 +1,5 @@
 import { NodeTypes } from 'constants/index';
-import { CHANGE_NODE_TYPE, CLEAR_GRAPH } from 'actions';
+import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'actions';
 
 const initialState = () => {
   const rows = Math.floor((window.innerHeight - 75) / 34);
@@ -60,6 +60,19 @@ const reducer = (state = initialState(), action) => {
         currEnd,
       };
     case CLEAR_GRAPH:
+      matrix.forEach((rowArr, row, arr) => {
+        rowArr.forEach((node, col) => {
+          if (matrix[row][col] === NodeTypes.TRAVERSED || matrix[row][col] === NodeTypes.PATH) {
+            matrix[row][col] = NodeTypes.DEFAULT;
+          }
+        });
+      });
+
+      return {
+        ...state,
+        matrix
+      };
+    case RESET_GRAPH:
       matrix.forEach((rowArr, row, arr) => {
         rowArr.forEach((node, col) => {
           if (matrix[row][col] !== NodeTypes.START && matrix[row][col] !== NodeTypes.END) {
