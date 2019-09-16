@@ -5,26 +5,68 @@
   justify-content: space-between;
 }
 
+.mode-container {
+  display: flex;
+}
+
+.mode-container > p {
+  margin: auto 0px auto 15px;
+}
+
 .mode-switcher {
   display: flex;
 }
 
-.mode-switcher p {
-  margin: auto 15px;
+.mode-switcher > div {
+  position: relative;
+  width: 70px;
+  height: 30px;
+  margin: auto 10px;
 }
 
-.mode-button {
-  height: 30px;
-  width: 50px;
-  margin: auto 10px;
-  padding: 0;
+.mode-switcher label, .mode-switcher input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+
+.mode-switcher input[type="radio"] {
+  opacity: 0;
+}
+
+.mode-switcher input[type="radio"]:checked + label {
+  background: darkgrey;
+  border-style: inset;
+}
+
+.mode-switcher label {
+  background: lightgrey;
+  border: 2px solid #ccc;
   border-radius: 5px;
+  border-style: outset;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+}
+
+.mode-switcher label:hover {
+  background: #ccc;
 }
 
 .run-button {
+  background: lightgrey;
   height: 30px;
   width: 150px;
   margin: auto 15px;
-  padding: 0;
   border-radius: 5px;
+}
+
+.run-button:hover {
+  background-color: #ccc;
+}
+
+.run-button:focus {
+  outline: none;
 }
