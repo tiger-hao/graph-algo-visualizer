@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f9d282a17dfb892651d9c49afdb954ac",
+    "revision": "146b8670f22c8ae49d788ddf5e7fb067",
     "url": "/graph-algo-visualizer/index.html"
   },
   {
