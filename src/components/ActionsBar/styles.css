@@ -1,8 +1,8 @@
 .actions-bar {
   display: flex;
-  height: 60px;
   width: 100vw;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .mode-container {
@@ -15,6 +15,7 @@
 
 .mode-switcher {
   display: flex;
+  margin: 10px;
 }
 
 .mode-switcher > div {
@@ -48,7 +49,7 @@
   border-style: outset;
   cursor: pointer;
   text-align: center;
-  line-height: 30px;
+  line-height: 26px;
 }
 
 .mode-switcher label:hover {
@@ -59,8 +60,11 @@
   background: lightgrey;
   height: 30px;
   width: 150px;
-  margin: auto 15px;
+  margin: 10px 15px;
+  border: 2px solid #ccc;
   border-radius: 5px;
+  border-style: outset;
+  cursor: pointer;
 }
 
 .run-button:hover {
