@@ -1,5 +1,5 @@
 import store from 'store';
-import { changeNodeType } from 'actions';
+import { changeNodeType, clearGraph } from 'actions';
 import { NodeTypes } from 'constants/index';
 
 function adjacent(node, graph) {
@@ -49,6 +49,8 @@ async function dijkstra(graph, start, end) {
   const Q = new Set();
   const rows = graph.length;
   const columns = graph[0].length;
+
+  store.dispatch(clearGraph());
 
   graph.forEach((rowArr, rowNum) => {
     rowArr.forEach((node, colNum) => {
