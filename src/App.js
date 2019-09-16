@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import ActionsBar from 'components/ActionsBar';
 import Graph from 'components/Graph';
-import { GraphModes } from 'constants/index';
+import { GraphModes } from 'constants/graph';
 
 const App = () => {
   const [graphMode, setGraphMode] = useState(GraphModes.WALL);

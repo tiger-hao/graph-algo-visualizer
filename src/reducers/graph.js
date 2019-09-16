@@ -1,7 +1,7 @@
-import { NodeTypes } from 'constants/index';
-import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'actions';
+import { NodeTypes } from 'constants/graph';
+import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/action-types';
 
-const initialState = () => {
+function initialState() {
   const rows = Math.floor((window.innerHeight - 75) / 34);
   const columns = Math.floor(window.innerWidth / 34);
 
@@ -29,7 +29,7 @@ const initialState = () => {
   };
 };
 
-const reducer = (state = initialState(), action) => {
+function reducer(state = initialState(), action) {
   let { matrix, currStart, currEnd } = state;
 
   switch (action.type) {

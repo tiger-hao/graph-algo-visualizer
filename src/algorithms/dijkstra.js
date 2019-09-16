@@ -1,6 +1,6 @@
 import store from 'store';
-import { changeNodeType, clearGraph } from 'actions';
-import { NodeTypes } from 'constants/index';
+import { changeNodeType, clearGraph, startAlgorithm, endAlgorithm } from 'actions';
+import { NodeTypes } from 'constants/graph';
 
 function adjacent(node, graph) {
   const { row, col } = node;
@@ -46,6 +46,7 @@ function sleep(ms) {
 
 async function dijkstra(graph, start, end) {
   const dispatch = store.dispatch;
+  dispatch(startAlgorithm());
   const Q = new Set();
   const rows = graph.length;
   const columns = graph[0].length;
@@ -113,6 +114,8 @@ async function dijkstra(graph, start, end) {
       u = previous[u.row][u.col];
     }
   }
+
+  dispatch(endAlgorithm());
 }
 
 export default dijkstra;

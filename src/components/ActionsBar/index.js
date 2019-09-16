@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 import { clearGraph, resetGraph } from 'actions';
-import { GraphModes } from 'constants/index';
+import { GraphModes } from 'constants/graph';
 import dijkstra from 'algorithms/dijkstra';
 
 const ActionsBar = ({ mode, setMode }) =>  {
   const dispatch = useDispatch();
-  const { graph, start, end } = useSelector(state => ({
+  const { graph, start, end, algoRunning } = useSelector(state => ({
     graph: state.graph.matrix,
     start: state.graph.currStart,
     end: state.graph.currEnd,
+    algoRunning: state.algorithm.isRunning,
   }));
 
   return (
@@ -35,9 +36,9 @@ const ActionsBar = ({ mode, setMode }) =>  {
       </div>
 
       <div className="action-container">
-        <button className="action-button" onClick={() => dijkstra(graph, start, end)}>Run Dijkstra's</button>
-        <button className="action-button" onClick={() => dispatch(clearGraph())}>Clear Graph</button>
-        <button className="action-button" onClick={() => dispatch(resetGraph())}>Reset Graph</button>
+        <button className="action-button" onClick={() => dijkstra(graph, start, end)} disabled={algoRunning}>Run Dijkstra's</button>
+        <button className="action-button" onClick={() => dispatch(clearGraph())} disabled={algoRunning}>Clear Graph</button>
+        <button className="action-button" onClick={() => dispatch(resetGraph())} disabled={algoRunning}>Reset Graph</button>
       </div>
     </div>
   );
