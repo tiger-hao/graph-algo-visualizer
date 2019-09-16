@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
+import { clearGraph } from 'actions';
 import { GraphModes } from 'constants/index';
 import dijkstra from 'algorithms/dijkstra';
 
 const ActionsBar = ({ mode, setMode }) =>  {
+  const dispatch = useDispatch();
   const { graph, start, end } = useSelector(state => ({
     graph: state.graph.matrix,
     start: state.graph.currStart,
@@ -32,7 +34,10 @@ const ActionsBar = ({ mode, setMode }) =>  {
         </div>
       </div>
 
-      <button className="run-button" onClick={() => dijkstra(graph, start, end)}>RUN DIJKSTRA'S</button>
+      <div>
+        <button className="action-button" onClick={() => dijkstra(graph, start, end)}>Run Dijkstra's</button>
+        <button className="action-button" onClick={() => dispatch(clearGraph())}>Clear Graph</button>
+      </div>
     </div>
   );
 };

@@ -56,10 +56,10 @@
   background: #ccc;
 }
 
-.run-button {
+.action-button {
   background: lightgrey;
   height: 30px;
-  width: 150px;
+  width: 100px;
   margin: 10px 15px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -67,10 +67,10 @@
   cursor: pointer;
 }
 
-.run-button:hover {
+.action-button:hover {
   background-color: #ccc;
 }
 
-.run-button:focus {
+.action-button:focus {
   outline: none;
 }
