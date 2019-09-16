@@ -75,8 +75,9 @@ async function dijkstra(graph, start, end) {
   );
 
   distance[start.row][start.col] = 0;
+  let reachedEnd = false;
 
-  while (Q.size > 0) {
+  while (Q.size > 0 && !reachedEnd) {
     const u = minDistance(distance, Q);
 
     // path does not exist
@@ -90,10 +91,6 @@ async function dijkstra(graph, start, end) {
       }
     });
 
-    if (u.row === end.row && u.col === end.col) {
-      break;
-    }
-
     for (const v of adjacent(u, graph)) {
       dispatch(changeNodeType(v, NodeTypes.TRAVERSED));
 
@@ -101,6 +98,10 @@ async function dijkstra(graph, start, end) {
       if (altDist < distance[v.row][v.col]) {
         distance[v.row][v.col] = altDist;
         previous[v.row][v.col] = u;
+      }
+
+      if (v.row === end.row && v.col === end.col) {
+        reachedEnd = true;
       }
     }
 
