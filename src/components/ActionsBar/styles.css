@@ -38,12 +38,12 @@
 }
 
 .mode-switcher input[type="radio"]:checked + label {
-  background: darkgrey;
+  background-color: darkgrey;
   border-style: inset;
 }
 
 .mode-switcher label {
-  background: lightgrey;
+  background-color: lightgrey;
   border: 2px solid #ccc;
   border-radius: 5px;
   border-style: outset;
@@ -53,7 +53,7 @@
 }
 
 .mode-switcher label:hover {
-  background: #ccc;
+  background-color: #ccc;
 }
 
 .action-container {
@@ -61,21 +61,55 @@
   padding-left: 5px;
 }
 
-.action-button {
-  background: lightgrey;
+.button {
   height: 30px;
-  width: 100px;
+  width: 96px;
   margin: 10px 10px;
-  border: 2px solid #ccc;
+  border: 2px solid outset;
   border-radius: 5px;
-  border-style: outset;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.action-button:hover {
+.button:focus {
+  outline: none;
+}
+
+.button[disabled]{
+  border-color: #ccc;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+}
+
+.button[disabled]:hover {
+  background-color: #cccccc;
+}
+
+.action {
+  background-color: lightgrey;
+  border-color: #ccc;
+}
+
+.action:hover {
   background-color: #ccc;
 }
 
-.action-button:focus {
-  outline: none;
+.run {
+  background-color: rgb(0, 172, 0);
+  border-color: rgb(4, 158, 4);
+  width: 110px;
+}
+
+.run:hover {
+  background-color: rgb(4, 158, 4);
+}
+
+.stop {
+  background-color: rgb(233, 0, 0);
+  border-color: rgb(209, 0, 0);
+}
+
+.stop:hover {
+  background-color: rgb(209, 0, 0);
 }

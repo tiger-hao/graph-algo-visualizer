@@ -78,8 +78,12 @@ async function dijkstra(graph, start, end) {
   let reachedEnd = false;
 
   while (Q.size > 0 && !reachedEnd) {
-    const u = minDistance(distance, Q);
+    const state = store.getState();
+    if (!state.algorithm.isRunning) {
+      break;
+    }
 
+    const u = minDistance(distance, Q);
     // path does not exist
     if (!u) {
       break;
