@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4beda31ab4ba9bce14967cf185a22aab",
+    "revision": "a04a143f0e6eac9f792d307343b38d0d",
     "url": "/graph-algo-visualizer/index.html"
   },
   {
-    "revision": "0e71b5788bee0403add2",
-    "url": "/graph-algo-visualizer/static/css/main.f3aa99f2.chunk.css"
+    "revision": "c3bacde5967a6142fde3",
+    "url": "/graph-algo-visualizer/static/css/main.50092a0c.chunk.css"
   },
   {
     "revision": "1be983e526048c4bfadc",
     "url": "/graph-algo-visualizer/static/js/2.f4e2fee8.chunk.js"
   },
   {
-    "revision": "0e71b5788bee0403add2",
-    "url": "/graph-algo-visualizer/static/js/main.0ff53222.chunk.js"
+    "revision": "c3bacde5967a6142fde3",
+    "url": "/graph-algo-visualizer/static/js/main.5279bc12.chunk.js"
   },
   {
     "revision": "c420b4add96c9531a83b",

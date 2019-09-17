@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/graph-algo-visualizer/static/css/main.f3aa99f2.chunk.css",
-    "main.js": "/graph-algo-visualizer/static/js/main.0ff53222.chunk.js",
-    "main.js.map": "/graph-algo-visualizer/static/js/main.0ff53222.chunk.js.map",
+    "main.css": "/graph-algo-visualizer/static/css/main.50092a0c.chunk.css",
+    "main.js": "/graph-algo-visualizer/static/js/main.5279bc12.chunk.js",
+    "main.js.map": "/graph-algo-visualizer/static/js/main.5279bc12.chunk.js.map",
     "runtime~main.js": "/graph-algo-visualizer/static/js/runtime~main.a499fafb.js",
     "runtime~main.js.map": "/graph-algo-visualizer/static/js/runtime~main.a499fafb.js.map",
     "static/js/2.f4e2fee8.chunk.js": "/graph-algo-visualizer/static/js/2.f4e2fee8.chunk.js",
     "static/js/2.f4e2fee8.chunk.js.map": "/graph-algo-visualizer/static/js/2.f4e2fee8.chunk.js.map",
     "index.html": "/graph-algo-visualizer/index.html",
-    "precache-manifest.6399a91cb7e88f5a8b0cc46b410d6b39.js": "/graph-algo-visualizer/precache-manifest.6399a91cb7e88f5a8b0cc46b410d6b39.js",
+    "precache-manifest.d468dad487687ffa5c9ed67eb35315c4.js": "/graph-algo-visualizer/precache-manifest.d468dad487687ffa5c9ed67eb35315c4.js",
     "service-worker.js": "/graph-algo-visualizer/service-worker.js",
-    "static/css/main.f3aa99f2.chunk.css.map": "/graph-algo-visualizer/static/css/main.f3aa99f2.chunk.css.map",
+    "static/css/main.50092a0c.chunk.css.map": "/graph-algo-visualizer/static/css/main.50092a0c.chunk.css.map",
     "static/media/logo.svg": "/graph-algo-visualizer/static/media/logo.5d5d9eef.svg"
   }
 }
