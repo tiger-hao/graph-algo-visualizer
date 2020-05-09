@@ -6,12 +6,11 @@ import { GraphModes, NodeTypes } from 'constants/graph';
 import { changeNodeType } from 'actions';
 import Node from 'components/Node';
 
-const Graph = ({ graphMode }) => {
+const Graph = () => {
   const dispatch = useDispatch();
-  const { matrix, algoRunning } = useSelector(state => ({
-    matrix: state.graph.matrix,
-    algoRunning: state.algorithm.isRunning,
-  }));
+  const graphMode = useSelector(state => state.graph.graphMode);
+  const matrix = useSelector(state => state.graph.matrix);
+  const algoRunning = useSelector(state => state.algorithm.isRunning);
 
   const handleClick = useCallback(({ row, col }) => {
     let nodeType;
@@ -30,10 +29,17 @@ const Graph = ({ graphMode }) => {
     <div className="graph">
       {matrix && matrix.length > 0 && matrix.map((rowArr, rowNum) => {
         return (
-          <div>
+          <div key={`row ${rowNum}`}>
             {rowArr && rowArr.length > 0 && rowArr.map((value, colNum) => {
               return (
-                <Node row={rowNum} col={colNum} className={value}  onClick={handleClick} disabled={algoRunning} />
+                <Node
+                  key={`Node (${rowNum}, ${colNum})`}
+                  row={rowNum}
+                  col={colNum}
+                  className={value}
+                  onClick={handleClick}
+                  disabled={algoRunning}
+                />
               );
             })}
           </div>

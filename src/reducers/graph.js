@@ -1,9 +1,10 @@
-import { NodeTypes } from 'constants/graph';
-import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
+import { GraphModes, NodeTypes } from 'constants/graph';
+import { CHANGE_NODE_TYPE, SET_GRAPH_MODE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
+import { NODE_DIMENSION } from 'components/Node';
 
-function initialState() {
-  const rows = Math.floor((window.innerHeight - 75) / 34);
-  const columns = Math.floor(window.innerWidth / 34);
+function getInitialState() {
+  const rows = Math.floor((window.innerHeight - 75) / NODE_DIMENSION);
+  const columns = Math.floor(window.innerWidth / NODE_DIMENSION);
 
   const matrix = [...Array(rows)].map(x =>
     [...Array(columns)].map(x =>
@@ -26,64 +27,82 @@ function initialState() {
     matrix,
     currStart,
     currEnd,
+    graphMode: GraphModes.WALL
   };
 };
 
-function reducer(state = initialState(), action) {
+function reducer(state = getInitialState(), action) {
   let { matrix, currStart, currEnd } = state;
+  let newMatrix;
 
   switch (action.type) {
     case CHANGE_NODE_TYPE:
       const { node: { row, col }, nodeType } = action;
 
       // can't overwrite start and end nodes
-      if (matrix[row][col] !== NodeTypes.START && matrix[row][col] !== NodeTypes.END) {
-        // ensure only one start and end node exist
-        if (nodeType === NodeTypes.START) {
-          if (currStart) {
-            matrix[currStart.row][currStart.col] = NodeTypes.DEFAULT;
-          }
-          currStart = { row, col };
-        } else if (nodeType === NodeTypes.END) {
-          if (currEnd) {
-            matrix[currEnd.row][currEnd.col] = NodeTypes.DEFAULT;
-          }
-          currEnd = { row, col };
-        }
-
-        matrix[row][col] = nodeType;
+      if (matrix[row][col] === NodeTypes.START || matrix[row][col] === NodeTypes.END) {
+        return state;
       }
 
+      newMatrix = matrix.map((rowArr, i) => {
+        return rowArr.map((node, j) => {
+          if (i === row && j === col) {
+            return nodeType;
+          }
+
+          // ensure only one start and end node exist
+          if (nodeType === NodeTypes.START && node === NodeTypes.START) {
+            currStart = { row, col };
+            return NodeTypes.DEFAULT;
+          } else if (nodeType === NodeTypes.END && node === NodeTypes.END) {
+            currEnd = { row, col };
+            return NodeTypes.DEFAULT;
+          }
+
+          return node;
+        });
+      });
+
       return {
-        matrix,
+        ...state,
+        matrix: newMatrix,
         currStart,
-        currEnd,
+        currEnd
+      };
+    case SET_GRAPH_MODE:
+      return {
+        ...state,
+        graphMode: action.graphMode
       };
     case CLEAR_GRAPH:
-      matrix.forEach((rowArr, row, arr) => {
-        rowArr.forEach((node, col) => {
-          if (matrix[row][col] === NodeTypes.TRAVERSED || matrix[row][col] === NodeTypes.PATH) {
-            matrix[row][col] = NodeTypes.DEFAULT;
+      newMatrix = matrix.map(rowArr => {
+        return rowArr.map(node => {
+          if (node === NodeTypes.TRAVERSED || node === NodeTypes.PATH) {
+            return NodeTypes.DEFAULT;
           }
+
+          return node;
         });
       });
 
       return {
         ...state,
-        matrix
+        matrix: newMatrix
       };
     case RESET_GRAPH:
-      matrix.forEach((rowArr, row, arr) => {
-        rowArr.forEach((node, col) => {
-          if (matrix[row][col] !== NodeTypes.START && matrix[row][col] !== NodeTypes.END) {
-            matrix[row][col] = NodeTypes.DEFAULT;
+      newMatrix = matrix.map(rowArr => {
+        return rowArr.map(node => {
+          if (node !== NodeTypes.START && node !== NodeTypes.END) {
+            return NodeTypes.DEFAULT;
           }
+
+          return node;
         });
       });
 
       return {
         ...state,
-        matrix
+        matrix: newMatrix
       };
     default:
       return state;

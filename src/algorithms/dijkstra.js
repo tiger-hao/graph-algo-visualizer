@@ -44,9 +44,15 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function dijkstra(graph, start, end) {
-  const dispatch = store.dispatch;
-  dispatch(startAlgorithm());
+async function dijkstra() {
+  const {
+    matrix: graph,
+    currStart: start,
+    currEnd: end
+  } = store.getState().graph;
+
+  store.dispatch(startAlgorithm());
+
   const Q = new Set();
   const rows = graph.length;
   const columns = graph[0].length;
@@ -90,13 +96,13 @@ async function dijkstra(graph, start, end) {
     }
 
     Q.forEach(element => {
-      if(element.row === u.row && element.col === u.col) {
+      if (element.row === u.row && element.col === u.col) {
         Q.delete(element);
       }
     });
 
     for (const v of adjacent(u, graph)) {
-      dispatch(changeNodeType(v, NodeTypes.TRAVERSED));
+      store.dispatch(changeNodeType(v, NodeTypes.TRAVERSED));
 
       const altDist = distance[u.row][u.col] + 1;
       if (altDist < distance[v.row][v.col]) {
@@ -115,12 +121,12 @@ async function dijkstra(graph, start, end) {
   let u = previous[end.row][end.col];
   if (u) {
     while (u.row !== start.row || u.col !== start.col) {
-      dispatch(changeNodeType(u, NodeTypes.PATH));
+      store.dispatch(changeNodeType(u, NodeTypes.PATH));
       u = previous[u.row][u.col];
     }
   }
 
-  dispatch(endAlgorithm());
+  store.dispatch(endAlgorithm());
 }
 
 export default dijkstra;

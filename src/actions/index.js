@@ -6,6 +6,11 @@ export const changeNodeType = (node, nodeType) => ({
   nodeType,
 });
 
+export const setGraphMode = (graphMode) => ({
+  type: ActionTypes.SET_GRAPH_MODE,
+  graphMode
+});
+
 export const clearGraph = () => ({
   type: ActionTypes.CLEAR_GRAPH,
 });
