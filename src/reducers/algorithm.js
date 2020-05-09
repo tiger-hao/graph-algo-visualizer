@@ -1,4 +1,4 @@
-import { START_ALGORITHM, END_ALGORITHM } from 'constants/action-types';
+import { START_ALGORITHM, END_ALGORITHM } from 'constants/actionTypes';
 
 const initialState = {
   isRunning: false,
@@ -9,7 +9,7 @@ function reducer(state = initialState, action) {
     case START_ALGORITHM:
       return { ...state, isRunning: true };
     case END_ALGORITHM:
-      return {...state, isRunning: false };
+      return { ...state, isRunning: false };
     default:
       return state;
   }

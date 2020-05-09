@@ -1,5 +1,5 @@
 import { NodeTypes } from 'constants/graph';
-import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/action-types';
+import { CHANGE_NODE_TYPE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
 
 function initialState() {
   const rows = Math.floor((window.innerHeight - 75) / 34);

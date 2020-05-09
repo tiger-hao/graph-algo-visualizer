@@ -1,4 +1,4 @@
-import * as ActionTypes from 'constants/action-types';
+import * as ActionTypes from 'constants/actionTypes';
 
 export const changeNodeType = (node, nodeType) => ({
   type: ActionTypes.CHANGE_NODE_TYPE,
