@@ -1,5 +1,5 @@
 import store from 'store';
-import { changeNodeType, clearGraph, startAlgorithm, endAlgorithm } from 'actions';
+import { setNodeType, clearGraph, startAlgorithm, endAlgorithm } from 'actions';
 import { NodeTypes } from 'constants/graph';
 
 function adjacent(node, graph) {
@@ -102,7 +102,7 @@ async function dijkstra() {
     });
 
     for (const v of adjacent(u, graph)) {
-      store.dispatch(changeNodeType(v, NodeTypes.TRAVERSED));
+      store.dispatch(setNodeType(v, NodeTypes.TRAVERSED));
 
       const altDist = distance[u.row][u.col] + 1;
       if (altDist < distance[v.row][v.col]) {
@@ -121,7 +121,7 @@ async function dijkstra() {
   let u = previous[end.row][end.col];
   if (u) {
     while (u.row !== start.row || u.col !== start.col) {
-      store.dispatch(changeNodeType(u, NodeTypes.PATH));
+      store.dispatch(setNodeType(u, NodeTypes.PATH));
       u = previous[u.row][u.col];
     }
   }

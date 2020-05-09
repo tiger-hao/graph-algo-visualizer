@@ -1,7 +1,7 @@
 import * as ActionTypes from 'constants/actionTypes';
 
-export const changeNodeType = (node, nodeType) => ({
-  type: ActionTypes.CHANGE_NODE_TYPE,
+export const setNodeType = (node, nodeType) => ({
+  type: ActionTypes.SET_NODE_TYPE,
   node,
   nodeType,
 });

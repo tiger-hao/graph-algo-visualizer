@@ -1,5 +1,5 @@
 import { GraphModes, NodeTypes } from 'constants/graph';
-import { CHANGE_NODE_TYPE, SET_GRAPH_MODE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
+import { SET_NODE_TYPE, SET_GRAPH_MODE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
 import { NODE_DIMENSION } from 'components/Node';
 
 function getInitialState() {
@@ -36,7 +36,7 @@ function reducer(state = getInitialState(), action) {
   let newMatrix;
 
   switch (action.type) {
-    case CHANGE_NODE_TYPE:
+    case SET_NODE_TYPE:
       const { node: { row, col }, nodeType } = action;
 
       // can't overwrite start and end nodes

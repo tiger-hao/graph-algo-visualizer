@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './styles.css';
 import { GraphModes, NodeTypes } from 'constants/graph';
-import { changeNodeType } from 'actions';
+import { setNodeType } from 'actions';
 import Node from 'components/Node';
 
 const Graph = () => {
@@ -22,7 +22,7 @@ const Graph = () => {
       nodeType = graphMode;
     }
 
-    dispatch(changeNodeType({ row, col }, nodeType));
+    dispatch(setNodeType({ row, col }, nodeType));
   }, [dispatch, graphMode, matrix]);
 
   return (
