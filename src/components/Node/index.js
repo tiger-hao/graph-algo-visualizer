@@ -18,7 +18,13 @@ const Node = ({ row, col, weight, nodeType }) => {
         let newWeight = weight;
 
         do {
-          newWeight = parseInt(prompt("Enter a positive number."), 10);
+          newWeight = prompt("Enter a positive number.");
+
+          if (newWeight === null) {
+            return;
+          }
+
+          newWeight = parseInt(newWeight, 10);
         } while (isNaN(newWeight) || newWeight < 1);
 
         dispatch(setNodeWeight({ row, col }, newWeight));
