@@ -44,8 +44,8 @@ function reducer(state = getInitialState(), action) {
         return state;
       }
 
-      newMatrix = matrix.map((rowArr, i) => {
-        return rowArr.map((node, j) => {
+      newMatrix = matrix.map((rowArr, i) =>
+        rowArr.map((node, j) => {
           if (i === row && j === col) {
             return nodeType;
           }
@@ -60,8 +60,8 @@ function reducer(state = getInitialState(), action) {
           }
 
           return node;
-        });
-      });
+        })
+      );
 
       return {
         ...state,
@@ -75,30 +75,30 @@ function reducer(state = getInitialState(), action) {
         graphMode: action.graphMode
       };
     case CLEAR_GRAPH:
-      newMatrix = matrix.map(rowArr => {
-        return rowArr.map(node => {
+      newMatrix = matrix.map(rowArr =>
+        rowArr.map(node => {
           if (node === NodeTypes.TRAVERSED || node === NodeTypes.PATH) {
             return NodeTypes.DEFAULT;
           }
 
           return node;
-        });
-      });
+        })
+      );
 
       return {
         ...state,
         matrix: newMatrix
       };
     case RESET_GRAPH:
-      newMatrix = matrix.map(rowArr => {
-        return rowArr.map(node => {
+      newMatrix = matrix.map(rowArr =>
+        rowArr.map(node => {
           if (node !== NodeTypes.START && node !== NodeTypes.END) {
             return NodeTypes.DEFAULT;
           }
 
           return node;
-        });
-      });
+        })
+      );
 
       return {
         ...state,

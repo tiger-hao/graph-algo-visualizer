@@ -1,120 +1,78 @@
 import store from 'store';
 import { setNodeType, clearGraph, startAlgorithm, endAlgorithm } from 'actions';
 import { NodeTypes } from 'constants/graph';
-
-function adjacent(node, graph) {
-  const { row, col } = node;
-  const adjacentNodes = new Set();
-
-  if (col !== graph[0].length - 1 && graph[row][col + 1] !== NodeTypes.WALL) {
-    adjacentNodes.add({ row, col: col + 1 });
-  }
-
-  if (col !== 0 && graph[row][col - 1] !== NodeTypes.WALL) {
-    adjacentNodes.add({ row, col: col - 1 });
-  }
-
-  if (row !== graph.length - 1 && graph[row + 1][col] !== NodeTypes.WALL) {
-    adjacentNodes.add({ row: row + 1, col });
-  }
-
-  if (row !== 0 && graph[row - 1][col] !== NodeTypes.WALL) {
-    adjacentNodes.add({ row: row - 1, col });
-  }
-
-  return adjacentNodes;
-}
-
-function minDistance(distance, Q) {
-  let minDist = Infinity;
-  let minNode;
-
-  Q.forEach(element => {
-    const { row, col } = element;
-    if (distance[row][col] < minDist) {
-      minDist = distance[row][col];
-      minNode = { row, col };
-    }
-  });
-
-  return minNode;
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+import { adjacent, sleep } from './helpers';
+import { PriorityQueue } from './PriorityQueue';
 
 async function dijkstra() {
+  store.dispatch(clearGraph());
+  store.dispatch(startAlgorithm());
+
   const {
     matrix: graph,
     currStart: start,
     currEnd: end
   } = store.getState().graph;
-
-  store.dispatch(startAlgorithm());
-
-  const Q = new Set();
   const rows = graph.length;
   const columns = graph[0].length;
+  const pq = new PriorityQueue((a, b) => a < b);
+  pq.push(start, 0);
 
-  store.dispatch(clearGraph());
-
-  graph.forEach((rowArr, rowNum) => {
-    rowArr.forEach((node, colNum) => {
-      Q.add({
-        row: rowNum,
-        col: colNum
-      });
-    });
-  });
-
-  const distance = [...Array(rows)].map(x =>
-    [...Array(columns)].map(x =>
+  const distances = [...Array(rows)].map(() =>
+    [...Array(columns)].map(() =>
       Infinity
     )
   );
-
-  const previous = [...Array(rows)].map(x =>
-    [...Array(columns)].map(x =>
+  const previous = [...Array(rows)].map(() =>
+    [...Array(columns)].map(() =>
       undefined
     )
   );
+  const visited = [...Array(rows)].map(() =>
+    [...Array(columns)].map(() =>
+      false
+    )
+  );
 
-  distance[start.row][start.col] = 0;
   let reachedEnd = false;
+  let count = rows * columns;
 
-  while (Q.size > 0 && !reachedEnd) {
-    const state = store.getState();
-    if (!state.algorithm.isRunning) {
+  while (count > 0 && !reachedEnd) {
+    if (!store.getState().algorithm.isRunning) {
       break;
     }
 
-    const u = minDistance(distance, Q);
+    const top = pq.pop();
+
     // path does not exist
-    if (!u) {
+    if (!top) {
       break;
     }
 
-    Q.forEach(element => {
-      if (element.row === u.row && element.col === u.col) {
-        Q.delete(element);
+    const { value: node, priority: distance } = top;
+
+    if (visited[node.row][node.col]) {
+      continue;
+    } else {
+      visited[node.row][node.col] = true;
+    }
+
+    for (const adj of adjacent(node, graph)) {
+      store.dispatch(setNodeType(adj, NodeTypes.TRAVERSED));
+      const altDist = distance + 1;
+
+      if (altDist < distances[adj.row][adj.col]) {
+        distances[adj.row][adj.col] = altDist;
+        previous[adj.row][adj.col] = node;
+        pq.push(adj, altDist);
       }
-    });
 
-    for (const v of adjacent(u, graph)) {
-      store.dispatch(setNodeType(v, NodeTypes.TRAVERSED));
-
-      const altDist = distance[u.row][u.col] + 1;
-      if (altDist < distance[v.row][v.col]) {
-        distance[v.row][v.col] = altDist;
-        previous[v.row][v.col] = u;
-      }
-
-      if (v.row === end.row && v.col === end.col) {
+      if (adj.row === end.row && adj.col === end.col) {
         reachedEnd = true;
       }
     }
 
+    count--;
     await sleep(0);
   }
 
