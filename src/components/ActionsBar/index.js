@@ -27,11 +27,15 @@ const ActionsBar = () => {
             <input type="radio" id="wall-radio" name="graph-mode" onClick={() => dispatch(setGraphMode(GraphModes.WALL))} defaultChecked />
             <label htmlFor="wall-radio">WALL</label>
           </div>
+          <div>
+            <input type="radio" id="weight-radio" name="graph-mode" onClick={() => dispatch(setGraphMode(GraphModes.WEIGHT))} />
+            <label htmlFor="weight-radio">WEIGHT</label>
+          </div>
         </div>
       </div>
 
       <div className="action-container">
-        <button className="run button" onClick={dijkstra} disabled={algoRunning}>Run Dijkstra's</button>
+        <button className="run button" onClick={dijkstra} disabled={algoRunning}>Run Algorithm</button>
         <button className="stop button" onClick={() => dispatch(endAlgorithm())} disabled={!algoRunning}>Stop</button>
         <button className="action button" onClick={() => dispatch(clearGraph())} disabled={algoRunning}>Clear Graph</button>
         <button className="action button" onClick={() => dispatch(resetGraph())} disabled={algoRunning}>Reset Graph</button>

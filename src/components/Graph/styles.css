@@ -1,8 +1,15 @@
 .graph {
   height: calc(100vh - 125px);
   width: 100vw;
-  padding-top: 4px;
   text-align: center;
-  white-space: nowrap;
   overflow: auto;
+}
+
+.graph-row {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.graph-row:last-child {
+  border-bottom: 1px solid #999;
 }

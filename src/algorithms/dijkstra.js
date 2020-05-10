@@ -10,6 +10,7 @@ async function dijkstra() {
 
   const {
     matrix: graph,
+    weights,
     currStart: start,
     currEnd: end
   } = store.getState().graph;
@@ -19,19 +20,13 @@ async function dijkstra() {
   pq.push(start, 0);
 
   const distances = [...Array(rows)].map(() =>
-    [...Array(columns)].map(() =>
-      Infinity
-    )
+    [...Array(columns)].map(() => Infinity)
   );
   const previous = [...Array(rows)].map(() =>
-    [...Array(columns)].map(() =>
-      undefined
-    )
+    [...Array(columns)].map(() => undefined)
   );
   const visited = [...Array(rows)].map(() =>
-    [...Array(columns)].map(() =>
-      false
-    )
+    [...Array(columns)].map(() => false)
   );
 
   let reachedEnd = false;
@@ -55,11 +50,11 @@ async function dijkstra() {
       continue;
     } else {
       visited[node.row][node.col] = true;
+      store.dispatch(setNodeType(node, NodeTypes.TRAVERSED));
     }
 
     for (const adj of adjacent(node, graph)) {
-      store.dispatch(setNodeType(adj, NodeTypes.TRAVERSED));
-      const altDist = distance + 1;
+      const altDist = distance + weights[adj.row][adj.col];
 
       if (altDist < distances[adj.row][adj.col]) {
         distances[adj.row][adj.col] = altDist;

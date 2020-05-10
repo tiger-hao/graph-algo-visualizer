@@ -3,7 +3,13 @@ import * as ActionTypes from 'constants/actionTypes';
 export const setNodeType = (node, nodeType) => ({
   type: ActionTypes.SET_NODE_TYPE,
   node,
-  nodeType,
+  nodeType
+});
+
+export const setNodeWeight = (node, weight) => ({
+  type: ActionTypes.SET_NODE_WEIGHT,
+  node,
+  weight
 });
 
 export const setGraphMode = (graphMode) => ({
@@ -12,17 +18,17 @@ export const setGraphMode = (graphMode) => ({
 });
 
 export const clearGraph = () => ({
-  type: ActionTypes.CLEAR_GRAPH,
+  type: ActionTypes.CLEAR_GRAPH
 });
 
 export const resetGraph = () => ({
-  type: ActionTypes.RESET_GRAPH,
+  type: ActionTypes.RESET_GRAPH
 });
 
 export const startAlgorithm = () => ({
-  type: ActionTypes.START_ALGORITHM,
+  type: ActionTypes.START_ALGORITHM
 });
 
 export const endAlgorithm = () => ({
-  type: ActionTypes.END_ALGORITHM,
+  type: ActionTypes.END_ALGORITHM
 });

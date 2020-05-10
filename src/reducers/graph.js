@@ -1,15 +1,16 @@
 import { GraphModes, NodeTypes } from 'constants/graph';
-import { SET_NODE_TYPE, SET_GRAPH_MODE, CLEAR_GRAPH, RESET_GRAPH } from 'constants/actionTypes';
+import * as ActionTypes from 'constants/actionTypes';
 import { NODE_DIMENSION } from 'components/Node';
 
 function getInitialState() {
-  const rows = Math.floor((window.innerHeight - 75) / NODE_DIMENSION);
+  const rows = Math.floor((window.innerHeight - 125) / NODE_DIMENSION);
   const columns = Math.floor(window.innerWidth / NODE_DIMENSION);
 
-  const matrix = [...Array(rows)].map(x =>
-    [...Array(columns)].map(x =>
-      NodeTypes.DEFAULT
-    )
+  const matrix = [...Array(rows)].map(() =>
+    [...Array(columns)].map(() => NodeTypes.DEFAULT)
+  );
+  const weights = [...Array(rows)].map(() =>
+    [...Array(columns)].map(() => 1)
   );
   const currStart = {
     row: Math.floor(rows / 2),
@@ -25,6 +26,7 @@ function getInitialState() {
 
   return {
     matrix,
+    weights,
     currStart,
     currEnd,
     graphMode: GraphModes.WALL
@@ -32,19 +34,18 @@ function getInitialState() {
 };
 
 function reducer(state = getInitialState(), action) {
-  let { matrix, currStart, currEnd } = state;
-  let newMatrix;
+  let { matrix, weights, currStart, currEnd } = state;
 
   switch (action.type) {
-    case SET_NODE_TYPE:
+    case ActionTypes.SET_NODE_TYPE: {
       const { node: { row, col }, nodeType } = action;
 
-      // can't overwrite start and end nodes
+      // ensure start and end nodes are not overwritten
       if (matrix[row][col] === NodeTypes.START || matrix[row][col] === NodeTypes.END) {
         return state;
       }
 
-      newMatrix = matrix.map((rowArr, i) =>
+      const newMatrix = matrix.map((rowArr, i) =>
         rowArr.map((node, j) => {
           if (i === row && j === col) {
             return nodeType;
@@ -69,13 +70,32 @@ function reducer(state = getInitialState(), action) {
         currStart,
         currEnd
       };
-    case SET_GRAPH_MODE:
+    }
+    case ActionTypes.SET_NODE_WEIGHT: {
+      const { node: { row, col }, weight } = action;
+
+      const newWeights = weights.map((rowArr, i) =>
+        rowArr.map((node, j) => {
+          if (i === row && j === col) {
+            return weight;
+          }
+
+          return node;
+        })
+      );
+
+      return {
+        ...state,
+        weights: newWeights
+      };
+    }
+    case ActionTypes.SET_GRAPH_MODE:
       return {
         ...state,
         graphMode: action.graphMode
       };
-    case CLEAR_GRAPH:
-      newMatrix = matrix.map(rowArr =>
+    case ActionTypes.CLEAR_GRAPH: {
+      const newMatrix = matrix.map(rowArr =>
         rowArr.map(node => {
           if (node === NodeTypes.TRAVERSED || node === NodeTypes.PATH) {
             return NodeTypes.DEFAULT;
@@ -89,8 +109,9 @@ function reducer(state = getInitialState(), action) {
         ...state,
         matrix: newMatrix
       };
-    case RESET_GRAPH:
-      newMatrix = matrix.map(rowArr =>
+    }
+    case ActionTypes.RESET_GRAPH: {
+      const newMatrix = matrix.map(rowArr =>
         rowArr.map(node => {
           if (node !== NodeTypes.START && node !== NodeTypes.END) {
             return NodeTypes.DEFAULT;
@@ -104,6 +125,7 @@ function reducer(state = getInitialState(), action) {
         ...state,
         matrix: newMatrix
       };
+    }
     default:
       return state;
   }

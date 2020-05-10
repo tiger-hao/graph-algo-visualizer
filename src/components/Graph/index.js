@@ -1,44 +1,32 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
 import './styles.css';
-import { GraphModes, NodeTypes } from 'constants/graph';
-import { setNodeType } from 'actions';
-import Node from 'components/Node';
+import Node, { NODE_DIMENSION } from 'components/Node';
 
 const Graph = () => {
-  const dispatch = useDispatch();
-  const graphMode = useSelector(state => state.graph.graphMode);
   const matrix = useSelector(state => state.graph.matrix);
-  const algoRunning = useSelector(state => state.algorithm.isRunning);
-
-  const handleClick = useCallback(({ row, col }) => {
-    let nodeType;
-
-    // wall toggling
-    if (graphMode === GraphModes.WALL && matrix[row][col] === NodeTypes.WALL) {
-      nodeType = NodeTypes.DEFAULT;
-    } else {
-      nodeType = graphMode;
-    }
-
-    dispatch(setNodeType({ row, col }, nodeType));
-  }, [dispatch, graphMode, matrix]);
+  const weights = useSelector(state => state.graph.weights);
 
   return (
     <div className="graph">
       {matrix && matrix.length > 0 && matrix.map((rowArr, rowNum) => {
         return (
-          <div key={`row ${rowNum}`}>
-            {rowArr && rowArr.length > 0 && rowArr.map((value, colNum) => {
+          <div
+            key={`row ${rowNum}`}
+            className="graph-row"
+            style={{
+              width: NODE_DIMENSION * rowArr.length,
+              height: NODE_DIMENSION
+            }}
+          >
+            {rowArr && rowArr.length > 0 && rowArr.map((nodeType, colNum) => {
               return (
                 <Node
                   key={`Node (${rowNum}, ${colNum})`}
                   row={rowNum}
                   col={colNum}
-                  className={value}
-                  onClick={handleClick}
-                  disabled={algoRunning}
+                  weight={weights[rowNum][colNum]}
+                  nodeType={nodeType}
                 />
               );
             })}
