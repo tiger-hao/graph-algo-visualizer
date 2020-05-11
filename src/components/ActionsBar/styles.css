@@ -1,70 +1,66 @@
 .actions-bar {
   display: flex;
-  width: 100vw;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 5px 15px;
 }
 
-.mode-container {
+.button-container {
   display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px 0 -10px
 }
 
-.mode-container > p {
-  margin: auto 0px auto 15px;
+.button-group {
+  display: inline-block;
 }
 
-.mode-switcher {
-  display: flex;
-  margin: 10px;
+.button-group-header {
+  margin: 5px 10px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
 }
 
-.mode-switcher > div {
-  position: relative;
+.mode-button {
+  display: inline-block;
   width: 70px;
   height: 30px;
-  margin: auto 10px;
+  margin: 5px 10px;
 }
 
-.mode-switcher label, .mode-switcher input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0
-}
-
-.mode-switcher input[type="radio"] {
+.mode-radio {
+  position: fixed;
   opacity: 0;
 }
 
-.mode-switcher input[type="radio"]:checked + label {
-  background-color: darkgrey;
-  border-style: inset;
-}
-
-.mode-switcher label {
-  background-color: lightgrey;
+.mode-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 5px;
   border-style: outset;
+  background-color: lightgrey;
   cursor: pointer;
   text-align: center;
   line-height: 26px;
 }
 
-.mode-switcher label:hover {
+.mode-label:hover {
   background-color: #ccc;
 }
 
-.action-container {
-  padding-right: 5px;
-  padding-left: 5px;
+.mode-radio:checked + .mode-label {
+  background-color: darkgrey;
+  border-style: inset;
 }
 
 .button {
-  height: 30px;
   width: 96px;
-  margin: 10px 10px;
+  height: 30px;
+  margin: 5px 10px;
   border: 2px solid outset;
   border-radius: 5px;
   cursor: pointer;
@@ -98,7 +94,6 @@
 .run {
   background-color: rgb(0, 172, 0);
   border-color: rgb(4, 158, 4);
-  width: 110px;
 }
 
 .run:hover {

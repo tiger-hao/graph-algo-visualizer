@@ -9,7 +9,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <b>Graph Algorithms Visualizer</b>
+        <b>Graph Algorithm Visualizer</b>
       </header>
       <ActionsBar />
       <Graph />
