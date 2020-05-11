@@ -2,8 +2,9 @@ import store from 'store';
 import { setNodeType, clearGraph, startAlgorithm, endAlgorithm } from 'actions';
 import { NodeTypes } from 'constants/graph';
 import { adjacent, sleep } from './helpers';
+import { Queue } from './Queue';
 
-export async function dfs() {
+export async function bfs() {
   store.dispatch(clearGraph());
   store.dispatch(startAlgorithm());
 
@@ -23,32 +24,31 @@ export async function dfs() {
   );
 
   let reachedEnd = false;
-  const stack = [start];
+  const queue = new Queue();
+  queue.enqueue(start);
+  visited[start.row][start.col] = true;
 
-  while (stack.length && !reachedEnd) {
+  while (!queue.isEmpty() && !reachedEnd) {
     if (!store.getState().algorithm.isRunning) {
       break;
     }
 
-    const node = stack.pop();
+    const node = queue.dequeue();
+    store.dispatch(setNodeType(node, NodeTypes.TRAVERSED));
 
-    if (!visited[node.row][node.col]) {
-      visited[node.row][node.col] = true;
-      store.dispatch(setNodeType(node, NodeTypes.TRAVERSED));
-
-      for (const adj of adjacent(node, graph)) {
-        if (!visited[adj.row][adj.col]) {
-          stack.push(adj);
-          previous[adj.row][adj.col] = node;
-        }
-
-        if (adj.row === end.row && adj.col === end.col) {
-          reachedEnd = true;
-        }
+    for (const adj of adjacent(node, graph)) {
+      if (!visited[adj.row][adj.col]) {
+        queue.enqueue(adj);
+        visited[adj.row][adj.col] = true;
+        previous[adj.row][adj.col] = node;
       }
 
-      await sleep(0);
+      if (adj.row === end.row && adj.col === end.col) {
+        reachedEnd = true;
+      }
     }
+
+    await sleep(0);
   }
 
   let u = previous[end.row][end.col];

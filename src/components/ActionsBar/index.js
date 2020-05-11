@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
 import { setGraphMode, clearGraph, resetGraph, endAlgorithm } from 'actions';
 import { GraphModes } from 'constants/graph';
-import { dijkstra } from 'algorithms/dijkstra';
-import { dfs } from 'algorithms/dfs';
+import { bfs, dfs, dijkstra } from 'algorithms';
 
 const ActionsBar = () => {
   const dispatch = useDispatch();
@@ -36,6 +35,7 @@ const ActionsBar = () => {
       </div>
 
       <div className="action-container">
+        <button className="run button" onClick={bfs} disabled={algoRunning}>Run BFS</button>
         <button className="run button" onClick={dfs} disabled={algoRunning}>Run DFS</button>
         <button className="run button" onClick={dijkstra} disabled={algoRunning}>Run Dijkstra's</button>
         <button className="stop button" onClick={() => dispatch(endAlgorithm())} disabled={!algoRunning}>Stop</button>
