@@ -11,8 +11,8 @@ export async function dijkstra() {
   const {
     matrix: graph,
     weights,
-    currStart: start,
-    currEnd: end
+    startNode: start,
+    endNode: end
   } = store.getState().graph;
   const rows = graph.length;
   const columns = graph[0].length;

@@ -12,29 +12,29 @@ function getInitialState() {
   const weights = [...Array(rows)].map(() =>
     [...Array(columns)].map(() => 1)
   );
-  const currStart = {
+  const startNode = {
     row: Math.floor(rows / 2),
     col: Math.floor(columns / 3) - 1,
   };
-  const currEnd = {
+  const endNode = {
     row: Math.floor(rows / 2),
     col: Math.floor(columns * 2 / 3),
   };
 
-  matrix[currStart.row][currStart.col] = NodeTypes.START;
-  matrix[currEnd.row][currEnd.col] = NodeTypes.END;
+  matrix[startNode.row][startNode.col] = NodeTypes.START;
+  matrix[endNode.row][endNode.col] = NodeTypes.END;
 
   return {
     matrix,
     weights,
-    currStart,
-    currEnd,
+    startNode,
+    endNode,
     graphMode: GraphModes.WALL
   };
 };
 
 function reducer(state = getInitialState(), action) {
-  let { matrix, weights, currStart, currEnd } = state;
+  let { matrix, weights, startNode, endNode } = state;
 
   switch (action.type) {
     case ActionTypes.SET_NODE_TYPE: {
@@ -53,10 +53,10 @@ function reducer(state = getInitialState(), action) {
 
           // ensure only one start and end node exist
           if (nodeType === NodeTypes.START && node === NodeTypes.START) {
-            currStart = { row, col };
+            startNode = { row, col };
             return NodeTypes.DEFAULT;
           } else if (nodeType === NodeTypes.END && node === NodeTypes.END) {
-            currEnd = { row, col };
+            endNode = { row, col };
             return NodeTypes.DEFAULT;
           }
 
@@ -67,8 +67,8 @@ function reducer(state = getInitialState(), action) {
       return {
         ...state,
         matrix: newMatrix,
-        currStart,
-        currEnd
+        startNode,
+        endNode
       };
     }
     case ActionTypes.SET_NODE_WEIGHT: {

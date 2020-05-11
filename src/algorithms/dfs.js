@@ -9,8 +9,8 @@ export async function dfs() {
 
   const {
     matrix: graph,
-    currStart: start,
-    currEnd: end
+    startNode: start,
+    endNode: end
   } = store.getState().graph;
   const rows = graph.length;
   const columns = graph[0].length;
@@ -30,7 +30,7 @@ export async function dfs() {
       break;
     }
 
-    const node = stack.pop()
+    const node = stack.pop();
 
     if (visited[node.row][node.col]) {
       continue;
