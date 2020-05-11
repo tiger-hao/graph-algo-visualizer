@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/graph-algo-visualizer/static/css/main.bf8f3d04.chunk.css",
-    "main.js": "/graph-algo-visualizer/static/js/main.5200487d.chunk.js",
-    "main.js.map": "/graph-algo-visualizer/static/js/main.5200487d.chunk.js.map",
+    "main.css": "/graph-algo-visualizer/static/css/main.24f9bc24.chunk.css",
+    "main.js": "/graph-algo-visualizer/static/js/main.65cf9e89.chunk.js",
+    "main.js.map": "/graph-algo-visualizer/static/js/main.65cf9e89.chunk.js.map",
     "runtime-main.js": "/graph-algo-visualizer/static/js/runtime-main.fd4fd186.js",
     "runtime-main.js.map": "/graph-algo-visualizer/static/js/runtime-main.fd4fd186.js.map",
-    "static/js/2.84224a10.chunk.js": "/graph-algo-visualizer/static/js/2.84224a10.chunk.js",
-    "static/js/2.84224a10.chunk.js.map": "/graph-algo-visualizer/static/js/2.84224a10.chunk.js.map",
+    "static/js/2.0e48cade.chunk.js": "/graph-algo-visualizer/static/js/2.0e48cade.chunk.js",
+    "static/js/2.0e48cade.chunk.js.map": "/graph-algo-visualizer/static/js/2.0e48cade.chunk.js.map",
     "index.html": "/graph-algo-visualizer/index.html",
-    "precache-manifest.bdbc9364fce3afd1331a922e7f04fa35.js": "/graph-algo-visualizer/precache-manifest.bdbc9364fce3afd1331a922e7f04fa35.js",
+    "precache-manifest.b5cf6c4df1f39cd7a4691591ef75e050.js": "/graph-algo-visualizer/precache-manifest.b5cf6c4df1f39cd7a4691591ef75e050.js",
     "service-worker.js": "/graph-algo-visualizer/service-worker.js",
-    "static/css/main.bf8f3d04.chunk.css.map": "/graph-algo-visualizer/static/css/main.bf8f3d04.chunk.css.map",
-    "static/js/2.84224a10.chunk.js.LICENSE.txt": "/graph-algo-visualizer/static/js/2.84224a10.chunk.js.LICENSE.txt",
+    "static/css/main.24f9bc24.chunk.css.map": "/graph-algo-visualizer/static/css/main.24f9bc24.chunk.css.map",
+    "static/js/2.0e48cade.chunk.js.LICENSE.txt": "/graph-algo-visualizer/static/js/2.0e48cade.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/graph-algo-visualizer/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.fd4fd186.js",
-    "static/js/2.84224a10.chunk.js",
-    "static/css/main.bf8f3d04.chunk.css",
-    "static/js/main.5200487d.chunk.js"
+    "static/js/2.0e48cade.chunk.js",
+    "static/css/main.24f9bc24.chunk.css",
+    "static/js/main.65cf9e89.chunk.js"
   ]
 }
