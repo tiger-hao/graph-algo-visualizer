@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://tiger-hao.github.io/graph-algo-visualizer",
   "dependencies": {
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
